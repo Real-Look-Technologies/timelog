@@ -1,34 +1,27 @@
 const { Router } = require('express');
 const router = Router();
+const UserController = require('../controllers/UserController.js');
+
+const userController = new UserController();
 
 router.get('/api/users', (req, res) => {
-    res.status(200).send({
-        message: "Lista de users!"
-    });
+    userController.index(req, res);
 });
 
 router.get('/api/users/:id', (req, res) => {
-    res.status(200).send({
-        message: `User ${req.params.id}`
-    });
+    userController.show(req, res);
 });
 
 router.post('/api/users/:id', (req, res) => {
-    res.status(200).send({
-        message: `User ${req.params.id}`
-    });
+    userController.create(req, res);
 });
 
 router.put('/api/users/:id', (req, res) => {
-    res.status(200).send({
-        message: `User ${req.params.id}`
-    });
+    userController.update(req, res);
 });
 
 router.delete('/api/users/:id', (req, res) => {
-    res.status(200).send({
-        message: `User ${req.params.id}`
-    });
+    userController.destroy(req, res);
 });
 
 module.exports = router;
