@@ -1,0 +1,57 @@
+.full-header {
+    background-color: rgba(0, 0, 0, 0.185);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.logo {
+    border: none;
+    background: none;
+    cursor: pointer;
+    height: 125px;
+    width: 130px;
+}
+
+.Logo-img {
+    max-width: 100%;
+    height: auto;
+}
+
+.about-us,
+.solutions,
+.contact,
+.client-area {
+    font-size: 18px;
+    margin: 0 15px;
+    padding: 12px 20px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.hire-us {
+    font-size: 25px;
+    margin: 0 30px;
+    padding: 12px 20px;
+    cursor: pointer;
+    border: 2px solid orangered;
+    background-color: orangered;
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 15px;
+}
+
+.about-us:hover,
+.solutions:hover,
+.contact:hover,
+.client-area:hover {
+    background-color: navy;
+}
