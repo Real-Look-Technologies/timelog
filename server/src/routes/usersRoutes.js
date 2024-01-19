@@ -12,7 +12,7 @@ router.get('/api/users/:id', (req, res) => {
     userController.show(req, res);
 });
 
-router.post('/api/users/:id', (req, res) => {
+router.post('/api/users/', (req, res) => {
     userController.create(req, res);
 });
 

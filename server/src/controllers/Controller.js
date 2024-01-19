@@ -28,7 +28,7 @@ class Controller {
         const novoRegistroCriado = await this.entidadeService.criaRegistro(dadosParaCriacao);
         return res.status(200).json(novoRegistroCriado);
       } catch (erro) {
-        // erro
+        return res.status(500).send({message: erro.message})
       };
     };
   
