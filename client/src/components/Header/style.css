@@ -1,26 +1,41 @@
 .full-header {
     background-color: rgba(0, 0, 0, 0.185);
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     padding: 20px;
 }
 
-.logo {
-    border: none;
-    background: none;
-    cursor: pointer;
-    height: 125px;
-    width: 130px;
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
 }
 
-.Logo-img {
-    max-width: 100%;
-    height: auto;
+.logo-button {
+    border: none;
+    background: none;
 }
+
+.logo-img {
+    height: 50px; 
+}
+
+.navbar-content {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333; 
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: #007bff; 
+}
+
 
 .about-us,
 .solutions,
@@ -38,7 +53,7 @@ header {
 }
 
 .hire-us {
-    font-size: 25px;
+    font-size: 15px;
     margin: 0 30px;
     padding: 12px 20px;
     cursor: pointer;
