@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../../resources/logo.png';
-import './style.css';
+import './style.css'
 
 export default function Header() {
     return (
@@ -8,9 +8,10 @@ export default function Header() {
             <header className='full-header'>
                 <nav className='navbar' role='navigation'>
                     <button className='logo-button'>
-                        <img src={logo} alt='Logo da TimeLog' className='logo-img'/>
+                        <img src={logo} alt='Logo da TimeLog' className='logo-img'/>                      
                     </button>
                     <div className='navbar-content'>
+                        <a href='' className='nav-link'>HOME</a>
                         <a href='#about' className='nav-link'>SOBRE NÓS</a>
                         <a href='#solutions' className='nav-link'>SOLUÇÕES</a>
                         <a href='#contact' className='nav-link'>CONTATO</a>
