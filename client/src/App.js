@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Form from './components/Pages/Form'
+import Form from './components/Pages/Form/Form'
+import About from './components/Pages/About/about'
+
 class App extends Component {
   render() {
     return (
