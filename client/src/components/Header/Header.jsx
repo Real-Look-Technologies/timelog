@@ -14,7 +14,6 @@ export default function Header() {
                         <a href='' className='nav-link'>HOME</a>
                         <a href='#about' className='nav-link'>SOBRE NÓS</a>
                         <a href='#solutions' className='nav-link'>SOLUÇÕES</a>
-                        <a href='#contact' className='nav-link'>CONTATO</a>
                         <a href='#client-area' className='nav-link'>ÁREA DO CLIENTE</a>
                         <a href='#hire-us' className='nav-link hire-us'>COTE AGORA</a>
                     </div>
