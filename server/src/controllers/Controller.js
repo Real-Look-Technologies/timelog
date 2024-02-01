@@ -1,61 +1,70 @@
 class Controller {
-    constructor(entidadeService) {
-      this.entidadeService = entidadeService;
-    };
-  
-    async index(req, res) {
+  constructor(entidadeService) {
+    this.entidadeService = entidadeService;
+  }
+
+  wrapAsync(fn) {
+    return async (req, res, next) => {
       try {
-        const listaDeRegistro = await this.entidadeService.pegaTodosOsRegistros();
-        return res.status(200).json(listaDeRegistro);
-      } catch (erro) {
-        // erro
-      };
-    };
-  
-    async show(req, res) {
-      const { id } = req.params;
-      try {
-        const umRegistro = await this.entidadeService.pegaUmRegistroPorId(Number(id));
-        return res.status(200).json(umRegistro);
-      } catch (erro) {
-        // erro
-      };
-    };
-  
-    async create(req, res) {
-      const dadosParaCriacao = req.body;
-      try {
-        const novoRegistroCriado = await this.entidadeService.criaRegistro(dadosParaCriacao);
-        return res.status(200).json(novoRegistroCriado);
-      } catch (erro) {
-        return res.status(500).send({message: erro.message})
-      };
-    };
-  
-    async update(req, res) {
-      const { id } = req.params;
-      const dadosAtualizados = req.body;
-      try {
-        //isUpdated
-        const foiAtualizado = await this.entidadeService.atualizaRegistro(dadosAtualizados, Number(id));
-        if (!foiAtualizado) {
-          return res.status(400).json({ mensagem: 'registro não foi atualizado' });
-        }
-        return res.status(200).json({ mensagem: 'Atualizado com sucesso' });
-      } catch (erro) {
-        // erro
-      };
-    };
-  
-    async destroy(req, res) {
-      const { id } = req.params;
-      try {
-        await this.entidadeService.excluiRegistro(Number(id));
-        return res.status(200).json({ mensagem: `id ${id} deletado` });
+        await fn(req, res);
       } catch (error) {
-        return res.status(500).json(error.message);
-      };
+        if (error.name === "SequelizeValidationError") {
+          // Erro de validação do ORM
+          const validationErrors = error.errors.map((err) => ({
+            field: err.path,
+            message: err.message,
+          }));
+          res.status(400).json({ message: "Validation Error", errors: validationErrors });
+        } else {
+          // Outro erro inesperado
+          console.error(error);
+          res.status(500).json({ message: "Internal Server Error" });
+        }
+      }
     };
-  };
-  
-  module.exports = Controller;
+  }
+
+  index = this.wrapAsync(async (req, res) => {
+    const listaDeRegistro = await this.entidadeService.pegaTodosOsRegistros();
+    return res.status(200).json(listaDeRegistro);
+  });
+
+  show = this.wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const umRegistro = await this.entidadeService.pegaUmRegistroPorId(Number(id));
+    return res.status(200).json(umRegistro);
+  });
+
+  create = this.wrapAsync(async (req, res) => {
+    const dadosParaCriacao = req.body;
+    const novoRegistroCriado = await this.entidadeService.criaRegistro(dadosParaCriacao);
+    if (!novoRegistroCriado) {
+      res.status(400).json({ message: "Bad Request: Falha ao criar o registro" });
+    } else {
+      res.status(200).json(novoRegistroCriado);
+    }
+  });
+
+  update = this.wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const dadosAtualizados = req.body;
+    const foiAtualizado = await this.entidadeService.atualizaRegistro(dadosAtualizados, Number(id));
+    if (!foiAtualizado) {
+      res.status(404).json({ message: `Not Found: Registro com ID ${id} não encontrado` });
+    } else {
+      res.status(200).json({ message: "Atualizado com sucesso" });
+    }
+  });
+
+  destroy = this.wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const foiExcluido = await this.entidadeService.excluiRegistro(Number(id));
+    if (!foiExcluido) {
+      res.status(404).json({ message: `Not Found: Registro com ID ${id} não encontrado` });
+    } else {
+      res.status(200).json({ message: `ID ${id} deletado com sucesso` });
+    }
+  });
+}
+
+module.exports = Controller;

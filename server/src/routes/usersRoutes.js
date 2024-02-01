@@ -1,27 +1,12 @@
-const { Router } = require('express');
-const router = Router();
-const UserController = require('../controllers/UserController.js');
-
+const express = require('express');
+const router = express.Router();
+const UserController = require('../controllers/UserController');
 const userController = new UserController();
 
-router.get('/api/users', (req, res) => {
-    userController.index(req, res);
-});
-
-router.get('/api/users/:id', (req, res) => {
-    userController.show(req, res);
-});
-
-router.post('/api/users/', (req, res) => {
-    userController.create(req, res);
-});
-
-router.put('/api/users/:id', (req, res) => {
-    userController.update(req, res);
-});
-
-router.delete('/api/users/:id', (req, res) => {
-    userController.destroy(req, res);
-});
+router.get('/api/users', userController.index);
+router.get('/api/users/:id', userController.show);
+router.post('/api/users', userController.create);
+router.put('/api/users/:id', userController.update);
+router.delete('/api/users/:id', userController.destroy);
 
 module.exports = router;
