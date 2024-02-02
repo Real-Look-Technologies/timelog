@@ -1,0 +1,35 @@
+.ffull-footer {
+    background-color: rgb(0, 0, 83);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fnavbar {
+    max-width: 800px;
+}
+
+.fnavbar-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fnavbar-content div {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.fnavbar-content a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.fnavbar-content a:hover {
+    color: orangered;
+}

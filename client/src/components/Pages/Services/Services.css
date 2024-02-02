@@ -1,0 +1,74 @@
+.Services {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    color: #333;
+}
+
+.Normal, .Rapido {
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.Normal:hover, .Rapido:hover {
+    transform: translateY(-5px);
+}
+
+.title {
+    background-color: #002366;
+    color: #fff;
+    font-size: 28px;
+    padding: 15px 30px;
+    margin: 0;
+    border-bottom: 5px solid #ff6600;
+}
+
+.subtitle {
+    background-color: #ff6600;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px 30px;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.blocks {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.blocktext {
+    flex: 1 1 30%;
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 20px;
+    text-align: center;
+    border-left: 5px solid #ff6600;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+}
+
+.blocktext:hover {
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-left-color: #002366;
+}
+
+@media (max-width: 768px) {
+    .blocks {
+        flex-direction: column;
+    }
+
+    .blocktext {
+        flex-basis: 100%;
+    }
+}
