@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../../resources/logo.png';
 import './style.css'
+import { Link } from 'react-router-dom';
 
 export default function Header() {
     return (
@@ -13,7 +14,7 @@ export default function Header() {
                     <div className='navbar-content'>
                         <a href='' className='nav-link'>HOME</a>
                         <a href='#solutions' className='nav-link'>SOLUÇÕES</a>
-                        <a href='#client-area' className='nav-link'>ÁREA DO CLIENTE</a>
+                        <Link to="/login" className='nav-link'>ÁREA DO CLIENTE</Link>
                         <a href='#hire-us' className='nav-link hire-us'>COTE AGORA</a>
                     </div>
                 </nav>
