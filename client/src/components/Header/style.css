@@ -1,5 +1,5 @@
 .full-header {
-    background-color: rgba(0, 0, 0, 0.185);
+    background-color: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     padding: 20px;
 }
@@ -17,7 +17,7 @@
 }
 
 .logo-img {
-    height: 50px; 
+    height: 85px; 
 }
 
 .navbar-content {
@@ -28,7 +28,7 @@
 
 .nav-link {
     text-decoration: none;
-    color: #ffffff; 
+    color: rgb(0, 0, 83);
     font-weight: bold;
 }
 
