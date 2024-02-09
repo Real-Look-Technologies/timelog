@@ -1,28 +1,85 @@
-.image {
-  width: 720px;
-  height: 360px;
+.slider {
+  position: relative;
+  max-width: 100%; /* This ensures the slider does not exceed the width of the device */
+  margin: auto; /* This centers the slider on the page */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */ /* Optional: Rounds the corners of the slider */
+  overflow: hidden; /* Hides anything that goes outside the bounds of the rounded corners */
 }
 
-.arrowL,
-.arrowR {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  top: 50%;
-  transform: translateY(-190%);
-  width: 70px;
+.slider-images {
+  display: flex; /* Use flex to center the image */
+  justify-content: center; /* Center image horizontally */
+  align-items: center; /* Center image vertically */
+  height: 700px; /* Set a specific height for the slider */
+  position: relative;
 }
 
-.arrowL {
-  left: 10px;
-}
 
-.arrowR {
-  right: 10px;
-}
-
-.LeftArrow,
-.RightArrow {
+.slider-images img {
   width: 100%;
   height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.slider-arrows {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.slider-arrows button {
+  pointer-events: all;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2em;
+  padding: 0.5em;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.slider-arrows button:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.slider-arrows button:first-child{
+  margin-left: 20px;
+}
+
+.slider-arrows button:last-child{
+  margin-right: 20px;
+}
+
+.slider-pagination {
+  position: absolute;
+  bottom: 10px; /* Adjust as necessary for spacing from the bottom */
+  width: 100%;
+  text-align: center;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  border: solid transparent 1px;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
 }

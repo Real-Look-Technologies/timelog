@@ -1,57 +1,57 @@
-import React from 'react';
-import img1 from './img1.jpg';
-import img2 from './img2.jpg';
-import img3 from './img3.jpeg';
-import arrowR from './arrowRight.png';
-import arrowL from './arrowLeft.png';
-import './Slider.css'
+import React, { useState } from 'react';
+import './Slider.css'; // Make sure to create a Slider.css file in the same directory
+import img from './img1.jpg'
+import img2 from './img2.jpg'
+import img3 from './img3.jpeg'
 
-function oneUp({ count, setCount }) {
-  setCount((prevCount) => (prevCount + 1) % 3);
-}
 
-function oneDown({ count, setCount }) {
-  setCount((prevCount) => (prevCount - 1 + 3) % 3);
-}
+const Slider = () => {
+  // Define the array of image URLs directly within the component
+  const images = [
+     img,
+     img2,
+     img3,
+    // Add as many images as you like
+  ];
 
-export default function Slider({ count, setCount }) {
-  if (count === 0) {
-    return (
-      <div>
-        <button className='arrowL' onClick={() => oneDown({ count, setCount })}>
-          <img src={arrowL} className="LeftArrow" alt='left arrow'/>
-        </button>
-        <img src={img1} alt="imagem do slider" className='image'/>
-        <button className='arrowR' onClick={() => oneUp({ count, setCount })}>
-          <img src={arrowR} className="RightArrow" alt='right arrow' />
-        </button>
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const goToPrevious = () => {
+    const isFirstImage = currentIndex === 0;
+    const newIndex = isFirstImage ? images.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const goToNext = () => {
+    const isLastImage = currentIndex === images.length - 1;
+    const newIndex = isLastImage ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const goToIndex = (index) => {
+    setCurrentIndex(index);
+  };
+
+  return (
+    <div className="slider">
+      <div className="slider-images">
+        <img src={images[currentIndex]} alt={`Slide ${currentIndex}`} />
       </div>
-    );
-  }
-  if (count === 1) {
-    return(
-        <div>
-        <button className='arrowL' onClick={() => oneDown({ count, setCount })}>
-          <img src={arrowL} className="LeftArrow" alt='left arrow'/>
-        </button>
-        <img src={img2} alt="imagem do slider" className='image'/>
-        <button className='arrowR' onClick={() => oneUp({ count, setCount })}>
-        <img src={arrowR} className="RightArrow" alt='right arrow' />
-        </button>
+      <div className="slider-arrows">
+        <button onClick={goToPrevious}>&lt;</button>
+        <button onClick={goToNext}>&gt;</button>
       </div>
-    )
-  }
-  if (count === 2) {
-    return(
-        <div>
-        <button className='arrowL' onClick={() => oneDown({ count, setCount })}>
-          <img src={arrowL} className="LeftArrow" alt='left arrow'/>
-        </button>
-        <img src={img3} alt="imagem do slider" className='image'/>
-        <button className='arrowR' onClick={() => oneUp({ count, setCount })}>
-        <img src={arrowR} className="RightArrow" alt='right arrow' />
-        </button>
+      <div className="slider-pagination">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            className={`dot ${index === currentIndex ? 'active' : ''}`}
+            onClick={() => goToIndex(index)}
+          ></button>
+        ))}
       </div>
-    )
-  }
-}
+    </div>
+  );
+};
+
+export default Slider;

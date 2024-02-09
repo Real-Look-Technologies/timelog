@@ -3,7 +3,7 @@ import './style.css'
 export default function Footer(){
     return(
     <div>
-        <footer className="ffull-footer">
+        <footer className="full-footer">
             <nav className="fnavbar" role="navigation">
                 <div className="fnavbar-content">
                     <div>Contato: +55 54 3536-7227</div>

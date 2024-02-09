@@ -36,7 +36,7 @@ function UserLogin() {
                 required
                 />
             </div>
-            <button type="submit">Entrar</button>
+            <button className='submit-button' type="submit">Entrar</button>
         </form>
     </div>
   );
